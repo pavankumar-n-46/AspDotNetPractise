@@ -12,9 +12,10 @@ namespace Dot_net_core.Pages.Restaurants
     {
         public Restaurant Restaurant;
 
-        public void OnGet()
+        public void OnGet(int restaurantID)
         {
             Restaurant = new Restaurant();
+            Restaurant.Id = restaurantID;
         }
     }
 }
