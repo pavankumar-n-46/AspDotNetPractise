@@ -19,9 +19,15 @@ namespace Dot_net_core.Pages.Restaurants
             this.restaurantData = restaurantData;
         }
 
-        public void OnGet(int restaurantID)
+        public IActionResult OnGet(int restaurantID)
         {
             Restaurant = restaurantData.GetRestaurantById(restaurantID);
+            if (Restaurant != null)
+            {
+                return Page();
+            }
+
+            return RedirectToPage("./NotFound");
         }
     }
 }
