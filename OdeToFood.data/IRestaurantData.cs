@@ -12,6 +12,7 @@ namespace OdeToFood.data
         IEnumerable<Restaurant> GetAllRestaurantsByName(string name);
         Restaurant GetRestaurantById(int id);
         Restaurant Update(Restaurant updatedRestaurant);
+        Restaurant Add(Restaurant newRestaurant);
         int Commit();
     }
 
@@ -29,6 +30,13 @@ namespace OdeToFood.data
                 new Restaurant {Id = 5, Name = "Mexico Spice", Cuisine = CuisineType.Mexican ,Location = "R.R.Nagar"}
                  
             };
+        }
+
+        public Restaurant Add(Restaurant newRestaurant)
+        {
+            newRestaurant.Id = restaurants.Max(r => r.Id) + 1;
+            restaurants.Add(newRestaurant);
+            return newRestaurant;
         }
 
         public int Commit()
