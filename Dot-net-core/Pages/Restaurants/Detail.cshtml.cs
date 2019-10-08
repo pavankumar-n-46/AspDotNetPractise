@@ -12,7 +12,11 @@ namespace Dot_net_core.Pages.Restaurants
     public class DetailModel : PageModel
     {
         public Restaurant Restaurant;
-        public readonly IRestaurantData restaurantData;
+
+        [TempData]
+        public string Message { get; set; }
+
+        private readonly IRestaurantData restaurantData;
 
         public DetailModel(IRestaurantData restaurantData)
         {

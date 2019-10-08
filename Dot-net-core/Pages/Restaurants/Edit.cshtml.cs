@@ -59,7 +59,7 @@ namespace Dot_net_core.Pages.Restaurants
             {
                 restaurantData.Add(Restaurant);
             }
-  
+            TempData["Message"] = "Restaurant Saved!";
             restaurantData.Commit();
             return RedirectToPage("./Detail", new { restaurantID = Restaurant.Id });
         }
