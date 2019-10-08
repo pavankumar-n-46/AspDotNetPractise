@@ -33,7 +33,7 @@ namespace Dot_net_core
             });
 
             //dependency injection
-            services.AddSingleton<IRestaurantData, InMemoryRestaurantData>();
+            services.AddScoped<IRestaurantData, SqlRestaurantData>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
