@@ -42,6 +42,7 @@ namespace Dot_net_core.Pages.Restaurants
             {
                 restaurantData.Update(Restaurant);
                 restaurantData.Commit();
+                return RedirectToPage("./Detail", new { restaurantID = Restaurant.Id });
             }
             return Page();
         }
