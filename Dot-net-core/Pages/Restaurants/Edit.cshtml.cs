@@ -38,8 +38,11 @@ namespace Dot_net_core.Pages.Restaurants
         public IActionResult OnPost()
         {
             Cuisines = htmlHelper.GetEnumSelectList<CuisineType>();
-            restaurantData.Update(Restaurant);
-            restaurantData.Commit();
+            if (ModelState.IsValid)
+            {
+                restaurantData.Update(Restaurant);
+                restaurantData.Commit();
+            }
             return Page();
         }
     }
