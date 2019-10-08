@@ -15,6 +15,7 @@ namespace Dot_net_core.Pages.Restaurants
         private readonly IRestaurantData restaurantData;
         private readonly IHtmlHelper htmlHelper;
 
+        [BindProperty]
         public Restaurant Restaurant { get; set; }
         public IEnumerable<SelectListItem> Cuisines { get; set; }
 
@@ -26,15 +27,19 @@ namespace Dot_net_core.Pages.Restaurants
         public IActionResult OnGet(int restaurantID)
         {
             Cuisines = htmlHelper.GetEnumSelectList<CuisineType>();
-
             Restaurant = restaurantData.GetRestaurantById(restaurantID);
-
             if(Restaurant != null)
             {
                 return Page();
             }
-
             return RedirectToPage("./NotFound");
+        }
+
+        public IActionResult OnPost()
+        {
+            Restaurant = restaurantData.Update(Restaurant);
+            restaurantData.Commit();
+            return Page();
         }
     }
 }
