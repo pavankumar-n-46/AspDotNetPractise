@@ -24,10 +24,17 @@ namespace Dot_net_core.Pages.Restaurants
             this.restaurantData = restaurantData;
             this.htmlHelper = htmlHelper;
         }
-        public IActionResult OnGet(int restaurantID)
+        public IActionResult OnGet(int? restaurantID)
         {
             Cuisines = htmlHelper.GetEnumSelectList<CuisineType>();
-            Restaurant = restaurantData.GetRestaurantById(restaurantID);
+            if (restaurantID.HasValue)
+            {
+                Restaurant = restaurantData.GetRestaurantById(restaurantID.Value);
+            }
+            else
+            {
+                Restaurant = new Restaurant();
+            }
             if(Restaurant != null)
             {
                 return Page();
